@@ -8,7 +8,15 @@
 </head>
 <body>
     <h1>Delete Hero</h1>
-    
+    <form action="{% url 'superheroes:delete' delete_hero.id %}" method="post">
+    <ul>
+        <li> <h2>{{delete_hero.name}}</h2> </li>
+        <li><h2>{{delete_hero.alterego}}</h2></li>
+        <li> <h2>{{delete_hero.primary_ability}}</h2> </li>
+        <li><h2>{{delete_hero.secondary_ability}}</h2></li>
+        <li><h2>{{delete_hero.catch_phrase}}</h2></li>
+    </ul>
+    <input type="Submit" value="Delete?">
     <a href="{% url 'superheroes:index' %}">Go Back Home</a>
 </body>
 </html>

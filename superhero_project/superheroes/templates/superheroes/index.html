@@ -10,7 +10,7 @@
 </head>
 <body>
     <h1>List of Heroes</h1>
-    <img src="{% static 'superhero_project/images/wolverine.jpeg' %}" width="210" height="312" >
+    <img src="{% static 'superhero_project/images/wolverine.jpeg' %}" width="240" height="345" >
     <ul>
         {% for hero in all_heroes %}
         <li> <h2>{{hero.name}} - <a href="{% url 'superheroes:detail' hero.id %}">Show Hero Details</a> - 

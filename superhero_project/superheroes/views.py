@@ -11,12 +11,14 @@ def index(request):
     }
     return render(request, 'superheroes/index.html', context)
 
+
 def detail(request, hero_id):
     single_hero = Superhero.objects.get(pk=hero_id)
     context = {
         'single_hero': single_hero
     }
     return render(request, 'superheroes/detail.html', context)
+
 
 def create(request):
     if request.method == "POST":
@@ -31,15 +33,15 @@ def create(request):
     else:
         return render(request, 'superheroes/create.html')
 
+
 def update(request, hero_id):
     update_hero = Superhero.objects.get(pk=hero_id)
     if request.method == "POST":
         update_hero.name = request.POST.get('name')
-        update_hero.alter_ego = request.POST.get('alter_ego')
+        update_hero.alter_ego = request.POST.get('alterego')
         update_hero.primary = request.POST.get('primary')
         update_hero.secondary = request.POST.get('secondary')
         update_hero.catchphrase = request.POST.get('catchphrase')
-        
         update_hero.save()
         return HttpResponseRedirect(reverse('superheroes:index'))
     else:
@@ -48,9 +50,8 @@ def update(request, hero_id):
         }
         return render(request, 'superheroes/update.html', context)
 
+
 def delete(request, hero_id):
-    delete_hero =Superhero.objects.delete(pk=hero_id)
-    context = {
-        'delete_hero': delete_hero
-    }
-    return render(request, 'superheroes/delete.html', context)
+    delete_hero =Superhero.objects.get(pk=hero_id)
+    delete_hero.delete()
+    return render(request, 'superheroes/index.html')
